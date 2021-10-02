@@ -29,7 +29,7 @@ function App() {
     <Router>
       <Switch>
     <Route path="/login" component={Login} />
-    <Route path="/signup" component={Signup} />
+    {/* <Route path="/signup" component={Signup} /> */}
     <ProtectedRoute exact path="/" component={Dashboard} />
     <ProtectedRoute path="/orders" component={Orders}/>
     <ProtectedRoute path="/Users" component={Users}/>
