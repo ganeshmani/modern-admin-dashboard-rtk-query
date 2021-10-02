@@ -30,7 +30,6 @@ const CreateUser = ({ isOpen,handleModalClick }) => {
     const _handleCreateUser = async (e) => {
         try {
             e.preventDefault()
-            console.log("state",state)
             await createUser({...state,status : "Active"})
         }
         catch(e){

@@ -42,7 +42,6 @@ const UpdateUser = ({ selectedUser,isOpen,handleModalClick }) => {
     const _handleUpdateUser = async (e) => {
         try {
             e.preventDefault()
-            console.log("state",state)
             await updateUser({...state,id: selectedUser.id,status : "Active"})
         }
         catch(e){

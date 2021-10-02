@@ -31,7 +31,6 @@ const Sidebar = ({ children }) => {
     const history = useHistory()
 
     const _handleNavClick = (item,index) => {
-      console.log("item",item)
       history.push(item.href)
       localStorage.setItem('currentIndex',index)
       setCurrentActiveIndex(index)

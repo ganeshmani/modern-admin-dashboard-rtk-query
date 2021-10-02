@@ -16,7 +16,6 @@ import Users from './features/Users'
 import { useAuth } from './hooks/useAuth'
 function ProtectedRoute({component: Component,...props}){
   const currentUser = useAuth()
-  console.log("currentUser",currentUser)
   return (
     <Route 
       {...props}

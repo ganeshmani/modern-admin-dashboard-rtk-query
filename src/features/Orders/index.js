@@ -38,7 +38,6 @@ const Orders = () => {
           Header: "Ordered Date",
           accessor: 'createdAt',
           Cell :({cell}) => {
-              console.log("cell",cell)
               return <div>{moment(cell.row.original.createdAt).format("Do MMM YYYY")}</div>
           }
         },
