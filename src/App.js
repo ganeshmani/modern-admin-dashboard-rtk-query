@@ -16,10 +16,19 @@ import Users from './features/Users'
 import { useAuth } from './hooks/useAuth'
 function ProtectedRoute({component: Component,...props}){
   const currentUser = useAuth()
+  const permissions = props.permissions
   return (
     <Route 
       {...props}
-      render={(props) => currentUser && currentUser.email ? <Component {...props} /> : <Redirect to="/login"/>}
+      render={(props) => {
+        if(currentUser && currentUser.email){
+          return (permissions.includes(currentUser.role) ? <Component {...props} /> : <Redirect to="/"/>)
+        }
+        else{
+          return (<Redirect to="/login"/>)
+        }
+       
+      }}
     />
   )
 }
@@ -30,9 +39,9 @@ function App() {
       <Switch>
     <Route path="/login" component={Login} />
     {/* <Route path="/signup" component={Signup} /> */}
-    <ProtectedRoute exact path="/" component={Dashboard} />
-    <ProtectedRoute path="/orders" component={Orders}/>
-    <ProtectedRoute path="/Users" component={Users}/>
+    <ProtectedRoute exact path="/" component={Dashboard} permissions={['admin','user']} />
+    <ProtectedRoute path="/orders" component={Orders} permissions={['admin','user']}/>
+    <ProtectedRoute path="/Users" component={Users} permissions={['admin']}/>
       </Switch>
   </Router>
   );
