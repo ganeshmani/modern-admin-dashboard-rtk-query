@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import SidebarLayout from '../../shared/layouts/Sidebar'
 import { Dialog, Menu, Transition } from '@headlessui/react'
-import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,ReferenceLine } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,ReferenceLine, Label } from 'recharts';
 import { css } from "@emotion/react";
 import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader";
 import { ClockIcon, HomeIcon, MenuAlt1Icon, ViewListIcon, XIcon } from '@heroicons/react/outline'
@@ -70,8 +70,8 @@ const Dashboard = () => {
             {monthlyReports.data ? (
         <ResponsiveContainer>
         <AreaChart
-          width={500}
-          height={400}
+          width={730} 
+          height={530}
           data={monthlyReports.data}
           margin={{
             top: 10,
@@ -83,8 +83,10 @@ const Dashboard = () => {
           <CartesianGrid strokeDasharray="3 3" />
           <ReferenceLine x={0} label="L1"/>
           <ReferenceLine x={monthlyReports.data.length-1} label="L2"/>
-          <XAxis label="Months" dataKey={"x"} />
-          <YAxis label="Total Orders"/>
+          <XAxis dataKey={"x"} height={50}>
+              <Label value="Month" offset={5} position="insideBottom" />
+          </XAxis>
+          <YAxis label={{ value: 'Total Orders', angle: -90,offset:25, position: 'insideLeft' }}/>
           <Tooltip />
           <Area type="monotone" dataKey={"y"} stroke="#8884d8" fill="#8884d8" />
         </AreaChart>
